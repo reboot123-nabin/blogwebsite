@@ -24,6 +24,10 @@
     "morgan": "^1.10.0",
     "multer": "^1.4.4",
     "nodemailer": "^6.7.2",
+    "passport": "^0.5.2",
+    "passport-facebook": "^3.0.0",
+    "passport-github2": "^0.1.12",
+    "passport-google-oauth20": "^2.0.0",
     "react-toastify": "^8.1.0",
     "validator": "^13.7.0"
   }

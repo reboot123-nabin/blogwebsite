@@ -11,7 +11,9 @@ const postSchema = new mongoose.Schema({
         type: String,
         required: [true, "Please enter replies"],
     },
- 
+    nimage:{
+        type:String
+    },
     message: {
         type: String,
         required: [true, "Please insert message!"],

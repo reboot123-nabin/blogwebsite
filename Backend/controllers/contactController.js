@@ -65,7 +65,20 @@ exports.getAllNotification=catchAsyncErrors(async(req,res,next)=>{
 
 })
 
-
+exports.searchdata=catchAsyncErrors(async(req,res,next)=>{
+    const { q } = req.query;
+  
+    const keys = ["fullname", "phone", "email","message"];
+  
+    const search = (data) => {
+      return data.filter((item) =>
+        keys.some((key) => item[key].toLowerCase().includes(q))
+      );
+    };
+  
+    q ? res.json(search(Contact).slice(0, 10)) : res.json(Contact.slice(0, 10));
+  })
+  
 
 exports.getNotification = catchAsyncErrors(async(req,res,next)=>{
     const contact = await Contact.findById({

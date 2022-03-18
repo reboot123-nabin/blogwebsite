@@ -1,4 +1,5 @@
 const User = require("../models/userModel");
+
 const Post=require("../models/postModel");
 const ErrorHandler = require("../utils/errorHandler");
 const catchAsyncErrors = require("../middleware/catchAsyncError");
@@ -113,11 +114,9 @@ exports.getUserDetails = catchAsyncErrors(async(req,res,next)=>{
 
 exports.forgotPassword = catchAsyncErrors(async(req,res,next)=>{
     const user = await User.findOne({email:req.body.email});
-
     if(!user){
         return next(new ErrorHandler("User Not found!",404));
     }
-
     //Get ResetPassword Token
     const resetToken = user.getResetPasswordToken();
 
@@ -151,6 +150,12 @@ exports.forgotPassword = catchAsyncErrors(async(req,res,next)=>{
   }
 
 });
+
+//search data
+
+
+
+
 
 //Reset Password
 
@@ -292,18 +297,18 @@ exports.viewPost=catchAsyncErrors(async(req,res,next)=>{
   }
 })
 exports.addPost=catchAsyncErrors(async(req,res,next)=>{
-  const {name,replies,message,title,date} = req.body;
-
+  const {name,replies,message,nimage,title,date} = req.body;
+console.log(req.body);
   // if(!name || !message || !replies || !title || !date){
   //     return next(new ErrorHandler("Please Enter all the field", 400));
   // }
-
   const post = await Post.create({
       name,
       message,
      replies,
      title,
-     date
+     date,
+     nimage
   });
   res.status(200).json({
     success: true,

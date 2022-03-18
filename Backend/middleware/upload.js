@@ -1,30 +1,27 @@
-const multer = require('multer');
+const multer=require('multer');
 
-const storage = multer.diskStorage({
-    destination : function(req,file,cb){
-        cb(null, '../backend/files')
+const storage=multer.diskStorage({
+    destination:function(req,file,cb){
+        cb(null,'./files')
     },
-    filename : function(req, file,cb){
-        cb(null, Date.now() + file.originalname)
+    filename:function(req,file,cb){
+        cb(null,Date.now()+file.originalname)
     }
 })
-
-
-//now we are going to filter image dile
-
-const filefilter = function(req,file, cb){
-    if(file.mimetype=='image/jpeg' || file.mimetype=='image/png' || file.mimetype=='image/gif' || file.mimetype=='image/jpg'){
-        cb(null, true)
+//now we are going to filter image
+const filter=function(req,file,cb){
+    if(file.mimetype=='image/jpeg' || file.mimetype=='image/jpg'){
+        cb(null,true)
     }
     else{
-        cb(null, false)
+        cb(null,false)
     }
 }
 
 const upload = multer({
-    storage: storage,
-    fileFilter : filefilter
+    storage:storage,
+    fileFilter:filter
+    
 });
 
-
-module.exports = upload;
+module.exports=upload;
